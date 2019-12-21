@@ -1,13 +1,16 @@
 package com.development.konversee.service;
 
 import com.development.konversee.model.AccountModel;
+import com.development.konversee.model.AccountTypeModel;
 import com.development.konversee.model.UsersModel;
 import com.development.konversee.repository.AccountDb;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigInteger;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -16,6 +19,9 @@ import java.util.Set;
 public class AccountServiceImpl implements  AccountService{
     @Autowired
     AccountDb accountDb;
+
+    @Autowired
+    UserService userService;
 
     @Override
     public void addNewAccount(AccountModel accountModel){
@@ -33,14 +39,38 @@ public class AccountServiceImpl implements  AccountService{
     }
 
     @Override
-    public AccountModel findByInfo(String username, BigInteger phoneNumber){
+    public AccountModel findByInfo(String username, BigInteger phoneNumber, AccountTypeModel type){
         List<AccountModel> allAccount = getAccountList();
         for (AccountModel account: allAccount){
-            if (account.getUsername().equalsIgnoreCase(username) && account.getPhoneNumber() == phoneNumber){
-                return account;
+            if (account.getUsername().equalsIgnoreCase(username)){
+                if (account.getPhoneNumber().equals(phoneNumber)){
+                    if (account.getType() == type){
+                        return  account;
+                    }
+                }
             }
         }
         return null;
+    }
+
+    @Override
+    public boolean checkSimilar(AccountModel accountModel){ //kalau ada yg sama return true
+        if (findByInfo(accountModel.getUsername(), accountModel.getPhoneNumber(), accountModel.getType()) != null){
+            System.out.println("NEMUUUUUUUUUUUUUUUUUUUUUU");
+            return true;
+        }
+        System.out.println(accountModel.getUsername() + " " + accountModel.getPhoneNumber());
+        return false;
+    }
+
+    @Override
+    public void addOwnerAccountRelationship(UsersModel user, AccountModel accountModel){
+        if (accountModel.getOwners() ==null){
+            Set<UsersModel> newset = new HashSet<UsersModel>();
+            accountModel.setOwners(newset);
+        }
+        accountModel.getOwners().add(user);
+        accountDb.save(accountModel);
     }
 
 

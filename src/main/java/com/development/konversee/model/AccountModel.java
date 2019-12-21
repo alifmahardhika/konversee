@@ -30,6 +30,7 @@ public class AccountModel {
     @Column(name = "phoneNumber", nullable = false)
     private BigInteger phoneNumber;
 
+    @NotNull
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "account_type", referencedColumnName = "id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)

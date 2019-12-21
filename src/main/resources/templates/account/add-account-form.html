@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create New Account</title>
+    <!-- jquery, ajax, and bootstrap.js -->
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar "></nav>
+
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 center">
+            <div class="card">
+                <div class="card-header">Create New Account</div>
+                <div class="card-body">
+                    <form th:action="@{/account/add-account}" method="POST">
+                        <label> Username </label>
+                        <input type="text" name="username" class="form-control"/>
+                        <br>
+                        <label> Phone Number </label>
+                        <input type="text" name="phoneNumber" class="form-control"/>
+                        <br>
+                        <label> Account Type </label>
+                        <select name="type" class="form-control">
+                            <option selected value=""> -- Select Type --</option>
+                            <option th:each="typeAvailable : ${listType}" th:value="${typeAvailable.id}" th:text="${typeAvailable.nama}"></option>
+                        </select>
+                        <br>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<footer th:replace="fragments/fragment :: footer"></footer>
+</html>
