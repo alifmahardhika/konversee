@@ -31,6 +31,9 @@ public class TransactionModel {
     @Column(name = "status", nullable = false)
     private Integer status;
 
+    @Column(name = "keterangan", nullable = false)
+    private String keterangan;
+
     @NotNull
     @Column(name = "noHpTujuan", nullable = false)
     private BigInteger noHpTujuan;

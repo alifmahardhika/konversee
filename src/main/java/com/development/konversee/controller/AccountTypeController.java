@@ -33,8 +33,13 @@ public class AccountTypeController {
 
     @RequestMapping(value = "/account/create-new-type", method = RequestMethod.POST)
     public String submitNewType(@ModelAttribute AccountTypeModel accountTypeModel, Authentication auth, Model model) {
+        if (accountTypeService.checkAccountType(accountTypeModel.getNama())){
+            return "account/new-type-fail";
+        }
         accountTypeService.addNewType(accountTypeModel);
         model.addAttribute("typeName", accountTypeModel.getNama());
         return "account/create-new-type";
     }
+
+
 }

@@ -10,6 +10,7 @@ import javax.validation.constraints.Size;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="account")
@@ -29,17 +30,15 @@ public class AccountModel {
     @Column(name = "phoneNumber", nullable = false)
     private BigInteger phoneNumber;
 
-    @OneToMany(mappedBy = "id", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore    private List<TransactionModel> transactionList;
-
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "account_type", referencedColumnName = "id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private AccountTypeModel type;
 
-    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "uuidUser", referencedColumnName = "id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private UsersModel owner;
+    @ManyToMany
+    @JoinTable(
+            name = "owners",
+            joinColumns = @JoinColumn(name = "id_account"),
+            inverseJoinColumns = @JoinColumn(name = "id_owner"))
+    Set<UsersModel> owners;
 }
