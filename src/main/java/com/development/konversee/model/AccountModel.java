@@ -41,4 +41,44 @@ public class AccountModel {
             joinColumns = @JoinColumn(name = "id_account"),
             inverseJoinColumns = @JoinColumn(name = "id_owner"))
     Set<UsersModel> owners;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public BigInteger getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(BigInteger phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public AccountTypeModel getType() {
+        return type;
+    }
+
+    public void setType(AccountTypeModel type) {
+        this.type = type;
+    }
+
+    public Set<UsersModel> getOwners() {
+        return owners;
+    }
+
+    public void setOwners(Set<UsersModel> owners) {
+        this.owners = owners;
+    }
 }

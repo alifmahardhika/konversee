@@ -1,5 +1,6 @@
 package com.development.konversee.service;
 
+import com.development.konversee.model.AccountModel;
 import com.development.konversee.model.UsersModel;
 import com.development.konversee.repository.UserDb;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -53,6 +55,11 @@ public class UserServiceImpl implements UserService {
         String newpassencrypt = encrypt(newpass);
         user.setPassword(newpassencrypt);
         userDb.save(user);
-
     }
+
+    @Override
+    public Set<AccountModel> getOwnerAccountList(UsersModel user) { //akun yg pernah digunakan
+        return user.getAccountsOwned();
+    }
+
 }

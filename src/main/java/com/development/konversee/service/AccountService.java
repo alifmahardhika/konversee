@@ -1,13 +1,16 @@
 package com.development.konversee.service;
 
 import com.development.konversee.model.AccountModel;
+import com.development.konversee.model.UsersModel;
 
+import java.math.BigInteger;
 import java.util.List;
+import java.util.Set;
 
 public interface AccountService {
     void addNewAccount(AccountModel accountModel);
-    AccountModel findAccountByOwnerId(Long ownerId);
     List<AccountModel> getAccountList();
-    List<AccountModel> getOwnerAccountListByOwnerId(List<AccountModel> allAccount, Long ownerId);
+    AccountModel findByInfo(String username, BigInteger phoneNumber);
+    Set<UsersModel> getAccountOwnerList(AccountModel accountModel); //pemilik/pengguna akun
 
 }

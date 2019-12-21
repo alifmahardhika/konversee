@@ -80,4 +80,20 @@ public class UsersModel implements Serializable {
     public void setRole(RoleModel role) {
         this.role = role;
     }
+
+    public List<TransactionModel> getTransactionList() {
+        return transactionList;
+    }
+
+    public void setTransactionList(List<TransactionModel> transactionList) {
+        this.transactionList = transactionList;
+    }
+
+    public Set<AccountModel> getAccountsOwned() {
+        return accountsOwned;
+    }
+
+    public void setAccountsOwned(Set<AccountModel> accountsOwned) {
+        this.accountsOwned = accountsOwned;
+    }
 }
