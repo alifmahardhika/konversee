@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registered Accounts</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+</head>
+<body>
+<br>
+<h1 class="text-center font-weight-bold m-3">Registered Accounts</h1>
+<div class="container-fluid">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>No</th>
+            <th>Account Type</th>
+            <th>Username</th>
+            <th>Phone Number</th>
+            <!--<th></th>-->
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="account, itr : ${accounts}">
+            <td th:text="${itr.count}"></td>
+            <td th:text="${account.type.nama}"></td>
+            <td th:text="${account.username}"></td>
+            <td th:text="${account.phoneNumber}"></td>
+            <td style="white-space: nowrap;">
+                <!--<div class="row" style="width:100%">-->
+                    <!--<a th:href="@{/pengajuan-surat/change/} + ${surat.id}" th:if="${surat.status == 0}">-->
+                        <!--<button type="button" class="btn btn-sm btn-info ml-2">Change Status</button>-->
+                    <!--</a>-->
+
+                <!--</div>-->
+            <!--</td>-->
+        </tr>
+        </tbody>
+    </table>
+</div>
+<footer th:replace="fragments/fragment :: footer"></footer>
+</body>
+</html>

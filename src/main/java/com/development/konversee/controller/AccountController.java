@@ -57,4 +57,11 @@ public class AccountController {
         accountService.addNewAccount(accountModel);
         return "account/add-account";
     }
+
+    @RequestMapping(value = "/account/view-all", method = RequestMethod.GET)
+    public String viewAll(Model model, Authentication auth) {
+        Set<AccountModel> accounts = userService.getOwnerAccountList(userService.getUser(auth.getName()));
+        model.addAttribute("accounts", accounts);
+        return "account/view-all";
+    }
 }

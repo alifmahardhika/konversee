@@ -56,7 +56,6 @@ public class AccountServiceImpl implements  AccountService{
     @Override
     public boolean checkSimilar(AccountModel accountModel){ //kalau ada yg sama return true
         if (findByInfo(accountModel.getUsername(), accountModel.getPhoneNumber(), accountModel.getType()) != null){
-            System.out.println("NEMUUUUUUUUUUUUUUUUUUUUUU");
             return true;
         }
         System.out.println(accountModel.getUsername() + " " + accountModel.getPhoneNumber());
