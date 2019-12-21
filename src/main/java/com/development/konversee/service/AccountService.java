@@ -15,5 +15,5 @@ public interface AccountService {
     Set<UsersModel> getAccountOwnerList(AccountModel accountModel); //pemilik/pengguna akun
     boolean checkSimilar(AccountModel accountModel);
     void addOwnerAccountRelationship(UsersModel user, AccountModel accountModel);
-
+    AccountModel assignBroker(AccountTypeModel type);
 }

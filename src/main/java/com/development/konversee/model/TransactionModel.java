@@ -29,7 +29,7 @@ public class TransactionModel {
 
     @NotNull
     @Column(name = "status", nullable = false)
-    private Integer status;
+    private Integer status; //0= verifikasi, 1= menunggu transfer dari origin, 2 = dalam pengiriman ke akun tujuan, 3 = berhasil, 4 = gagal, lihat keterangan
 
     @Column(name = "keterangan", nullable = false)
     private String keterangan;
@@ -40,7 +40,7 @@ public class TransactionModel {
 
     @NotNull
     @Column(name = "userNameTujuan", nullable = false)
-    private BigInteger userNameTujuan;
+    private String userNameTujuan;
 
     @NotNull
     @Column(name = "nominal", nullable = false)
@@ -57,9 +57,9 @@ public class TransactionModel {
     private UsersModel user;
 
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "uuidBroker", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "brokerAccountId", referencedColumnName = "id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private UsersModel broker;
+    private AccountModel broker;
 
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "accountOriginId", referencedColumnName = "id", nullable = false)
@@ -122,11 +122,11 @@ public class TransactionModel {
         this.noHpTujuan = noHpTujuan;
     }
 
-    public BigInteger getUserNameTujuan() {
+    public String getUserNameTujuan() {
         return userNameTujuan;
     }
 
-    public void setUserNameTujuan(BigInteger userNameTujuan) {
+    public void setUserNameTujuan(String userNameTujuan) {
         this.userNameTujuan = userNameTujuan;
     }
 
@@ -146,11 +146,36 @@ public class TransactionModel {
         this.user = user;
     }
 
-    public UsersModel getBroker() {
+    public BigInteger getNominal() {
+        return nominal;
+    }
+
+    public void setNominal(BigInteger nominal) {
+        this.nominal = nominal;
+    }
+
+    public AccountModel getBroker() {
         return broker;
     }
 
-    public void setBroker(UsersModel broker) {
+    public void setBroker(AccountModel broker) {
         this.broker = broker;
+    }
+
+    @Override
+    public String toString() {
+        return "TransactionModel{" +
+                "tanggalDibuka=" + tanggalDibuka +
+                ", tanggalDitutup=" + tanggalDitutup +
+                ", status=" + status +
+                ", keterangan='" + keterangan + '\'' +
+                ", noHpTujuan=" + noHpTujuan +
+                ", userNameTujuan=" + userNameTujuan +
+                ", nominal=" + nominal +
+                ", tipeAkunTujuan=" + tipeAkunTujuan +
+                ", user=" + user +
+                ", broker=" + broker +
+                ", origin=" + origin +
+                '}';
     }
 }

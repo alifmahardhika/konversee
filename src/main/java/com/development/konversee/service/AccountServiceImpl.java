@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -72,5 +73,24 @@ public class AccountServiceImpl implements  AccountService{
         accountDb.save(accountModel);
     }
 
+    @Override
+    public AccountModel assignBroker(AccountTypeModel type){
+        List<AccountModel> typeMatch = new ArrayList<AccountModel>();
+        List<AccountModel> potentialAsignees = new ArrayList<AccountModel>();
 
+        for (AccountModel potential:getAccountList()){
+            for (UsersModel user: potential.getOwners()){
+                if(user.getRole().getNama().equalsIgnoreCase("BROKER")){
+                    potentialAsignees.add(potential);
+                }
+            }
+        }
+
+        for (AccountModel acc:potentialAsignees){
+            if (acc.getType().equals(type) ){
+                typeMatch.add(acc);
+            }
+        }
+        return typeMatch.get(0);
+    }
 }
