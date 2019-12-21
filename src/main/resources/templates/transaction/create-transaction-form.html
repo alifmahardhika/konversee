@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Create Transaction</title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar(title='Home')"></nav>
+
+<div class="container mt-5">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card-header">Create Transaction</div>
+                <div class="card-body">
+                    <form th:action="@{/create-transaction}" method="POST">
+
+                        <h3>From: </h3>
+                        <label> Choose account origin</label>
+                        <select name="origin" class="form-control">
+                            <option selected value=""> -- Select account origin --</option>
+                            <option th:each="account : ${registeredAccounts}" th:value="${account.id}" th:text="${account.username} + ' (' + ${account.type.nama} + ')'"></option>
+                        </select>
+                        <br>
+
+                        <h3>To: </h3>
+                        <label> Destination Account's Username </label>
+                        <input type="text" name="userNameTujuan" class="form-control">
+                        <br>
+                        <label> Destination Account's Phone Number</label>
+                        <input type="number" name="noHpTujuan" class="form-control">
+                        <br>
+                        <label> Destination Account's Type</label>
+                        <select name="tipeAkunTujuan" class="form-control">
+                            <option selected value=""> -- Select destination account's type --</option>
+                            <option th:each="typeAvailable : ${accountTypes}" th:value="${typeAvailable.id}" th:text="${typeAvailable.nama}"></option>
+                        </select>
+                        <br>
+                        <label> Nominal (in Rupiah) </label>
+                        <input type="number" name="nominal" class="form-control">
+                        <br>
+                        <p style="color: red" th:text="${errormsg}"></p>
+                        <button type="submit" class ="btn btn-warning center">
+                            Simpan
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+</body>
+</html>

@@ -42,6 +42,10 @@ public class TransactionModel {
     @Column(name = "userNameTujuan", nullable = false)
     private BigInteger userNameTujuan;
 
+    @NotNull
+    @Column(name = "nominal", nullable = false)
+    private BigInteger nominal;
+
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "tipeAkunTujuan", referencedColumnName = "id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -56,4 +60,97 @@ public class TransactionModel {
     @JoinColumn(name = "uuidBroker", referencedColumnName = "id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private UsersModel broker;
+
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "accountOriginId", referencedColumnName = "id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private AccountModel origin;
+
+    public AccountModel getOrigin() {
+        return origin;
+    }
+
+    public void setOrigin(AccountModel origin) {
+        this.origin = origin;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public LocalDate getTanggalDibuka() {
+        return tanggalDibuka;
+    }
+
+    public void setTanggalDibuka(LocalDate tanggalDibuka) {
+        this.tanggalDibuka = tanggalDibuka;
+    }
+
+    public LocalDate getTanggalDitutup() {
+        return tanggalDitutup;
+    }
+
+    public void setTanggalDitutup(LocalDate tanggalDitutup) {
+        this.tanggalDitutup = tanggalDitutup;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getKeterangan() {
+        return keterangan;
+    }
+
+    public void setKeterangan(String keterangan) {
+        this.keterangan = keterangan;
+    }
+
+    public BigInteger getNoHpTujuan() {
+        return noHpTujuan;
+    }
+
+    public void setNoHpTujuan(BigInteger noHpTujuan) {
+        this.noHpTujuan = noHpTujuan;
+    }
+
+    public BigInteger getUserNameTujuan() {
+        return userNameTujuan;
+    }
+
+    public void setUserNameTujuan(BigInteger userNameTujuan) {
+        this.userNameTujuan = userNameTujuan;
+    }
+
+    public AccountTypeModel getTipeAkunTujuan() {
+        return tipeAkunTujuan;
+    }
+
+    public void setTipeAkunTujuan(AccountTypeModel tipeAkunTujuan) {
+        this.tipeAkunTujuan = tipeAkunTujuan;
+    }
+
+    public UsersModel getUser() {
+        return user;
+    }
+
+    public void setUser(UsersModel user) {
+        this.user = user;
+    }
+
+    public UsersModel getBroker() {
+        return broker;
+    }
+
+    public void setBroker(UsersModel broker) {
+        this.broker = broker;
+    }
 }
