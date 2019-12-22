@@ -48,10 +48,27 @@ public class UsersModel implements Serializable {
     @ManyToMany(mappedBy = "owners")
     Set<AccountModel> accountsOwned;
 
+    @NotNull
+    @Column(name = "emailAddress", nullable = false)
+    private String emailAddress;
+
+
 //    @JsonIgnore
 //    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 //    private List<PengajuanSuratModel> listPengajuanSurat;
 
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
 
     public String getId() {
         return id;
