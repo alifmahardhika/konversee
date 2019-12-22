@@ -8,9 +8,11 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 //import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import java.util.Properties;
+import java.util.concurrent.CompletableFuture;
 //
 //import java.io.File;
 //
@@ -40,8 +42,13 @@ public class EmailServiceImpl implements EmailService {
 
         return mailSender;
     }
+    @Async
+    public CompletableFuture asyncMailSender(String to, String subject, String text){
+        sendSimpleMessage(to,subject,text);
+        return CompletableFuture.completedFuture(null);
+    }
 
-    public void sendSimpleMessage(String to, String subject, String text) {
+    public void sendSimpleMessage(String to, String subject, String text){
         try {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setTo(to);
