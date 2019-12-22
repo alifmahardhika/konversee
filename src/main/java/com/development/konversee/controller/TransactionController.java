@@ -50,7 +50,7 @@ public class TransactionController {
         transactionModel.setStatus(0);
         transactionModel.setKeterangan("Verification in process");
         transactionModel.setUser(userService.getUser(auth.getName()));
-        AccountModel broker = accountService.assignBroker(transactionModel.getTipeAkunTujuan());
+        AccountModel broker = accountService.assignBroker(transactionModel.getOrigin().getType());
         transactionModel.setBroker(broker);
         System.out.println(transactionModel.toString());
         //send email notification to user
