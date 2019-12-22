@@ -60,6 +60,7 @@ public class PageController {
             return "/";
 //             return "error";
         } else {
+            user.setRole(roleService.findRoleByName("USER"));
             userService.addUser(user);
         }
         model.addAttribute("username", user.getUsername());
