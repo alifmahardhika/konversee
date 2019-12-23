@@ -11,7 +11,7 @@ import java.util.Set;
 public interface AccountService {
     void addNewAccount(AccountModel accountModel);
     List<AccountModel> getAccountList();
-    AccountModel findByInfo(String username, BigInteger phoneNumber, AccountTypeModel type);
+    AccountModel findByInfo(String username, String phoneNumber, AccountTypeModel type);
     Set<UsersModel> getAccountOwnerList(AccountModel accountModel); //pemilik/pengguna akun
     boolean checkSimilar(AccountModel accountModel);
     void addOwnerAccountRelationship(UsersModel user, AccountModel accountModel);

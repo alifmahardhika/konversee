@@ -40,8 +40,6 @@ public class PageController {
     @RequestMapping("/sign-up")
     public String signUp(Model model) {
 
-        model.addAttribute("listRole", roleService.findAll());
-
         return "add-user";
     }
 
@@ -56,10 +54,12 @@ public class PageController {
                                 @RequestParam(required=false) String nama, Model model) throws ParseException, java.text.ParseException {
 
         if (userService.getUser(user.getUsername()) != null) {
+            System.out.println("here");
             model.addAttribute("errormsg", "Username tidak valid");
             return "/";
 //             return "error";
         } else {
+            System.out.println("there");
             user.setRole(roleService.findRoleByName("USER"));
             userService.addUser(user);
         }

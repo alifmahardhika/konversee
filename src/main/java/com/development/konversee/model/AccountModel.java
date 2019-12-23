@@ -28,7 +28,7 @@ public class AccountModel {
 
     @NotNull
     @Column(name = "phoneNumber", nullable = false)
-    private BigInteger phoneNumber;
+    private String phoneNumber;
 
     @NotNull
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, optional = false)
@@ -59,12 +59,12 @@ public class AccountModel {
         this.username = username;
     }
 
-    public BigInteger getPhoneNumber() {
-        return phoneNumber;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    public void setPhoneNumber(BigInteger phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
     public AccountTypeModel getType() {

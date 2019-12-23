@@ -56,21 +56,21 @@ public class TransactionController {
         //send email notification to user
         emailService.asyncMailSender(userService.getUser(auth.getName()).getEmailAddress(), "Konversee Transaction Confirmation",
                 "This is Konversee transaction confirmation, proceed by sending specified amount of " + transactionModel.getOrigin().getType().getNama() +
-                        " based on the following details:\n" +
-                        " Transaction Type: " +transactionModel.getOrigin().getType().getNama() +" to "+ transactionModel.getTipeAkunTujuan().getNama()+"\n" +
-                        " Destination Account: \nPhone number: " + transactionModel.getNoHpTujuan()+ ", user: " + transactionModel.getUserNameTujuan()+", type: " + transactionModel.getTipeAkunTujuan().getNama()+"\n"+
-                        " \n\nAmount to transfer: " + transactionModel.getNominal()+", please send the specified amount to the following " + transactionModel.getOrigin().getType().getNama() + "account\n"+
-                        " Username: " + transactionModel.getBroker().getUsername() + "\n" +
-                        " Phone Number: " +transactionModel.getBroker().getPhoneNumber());
+                        "based on the following details:\n\n" +
+                        "Transaction Type: " +transactionModel.getOrigin().getType().getNama() +" to "+ transactionModel.getTipeAkunTujuan().getNama()+"\n\n" +
+                        "Destination Account: \nPhone number: " + transactionModel.getNoHpTujuan()+ ", \nuser: " + transactionModel.getUserNameTujuan()+", \ntype: " + transactionModel.getTipeAkunTujuan().getNama()+
+                        "\n\nAmount to transfer: " + transactionModel.getNominal()+", please send the specified amount to the following " + transactionModel.getOrigin().getType().getNama() + " account\n"+
+                        "Username: " + transactionModel.getBroker().getUsername() + "\n" +
+                        "Phone Number: " +transactionModel.getBroker().getPhoneNumber());
         //send notification to broker
         emailService.asyncMailSender("konversee.transaction@gmail.com", "[NEW TRANSACTION ALERT]",
                 "This is Konversee transaction confirmation, proceed by sending specified amount of " + transactionModel.getOrigin().getType().getNama() +
-                        " based on the following details:\n" +
-                        " Transaction Type: " +transactionModel.getOrigin().getType().getNama() +" to "+ transactionModel.getTipeAkunTujuan().getNama()+"\n" +
-                        " Destination Account: \nPhone number: " + transactionModel.getNoHpTujuan()+ ", user: " + transactionModel.getUserNameTujuan()+", type: " + transactionModel.getTipeAkunTujuan().getNama()+"\n"+
-                        " \n\nAmount to transfer: " + transactionModel.getNominal()+", please send the specified amount to the following " + transactionModel.getOrigin().getType().getNama() + "account\n"+
-                        " Username: " + transactionModel.getBroker().getUsername() + "\n" +
-                        " Phone Number: " +transactionModel.getBroker().getPhoneNumber());
+                        "based on the following details:\n" +
+                        "Transaction Type: " +transactionModel.getOrigin().getType().getNama() +" to "+ transactionModel.getTipeAkunTujuan().getNama()+"\n" +
+                        "Destination Account: \nPhone number: " + transactionModel.getNoHpTujuan()+ ", user: " + transactionModel.getUserNameTujuan()+", type: " + transactionModel.getTipeAkunTujuan().getNama()+"\n"+
+                        "\n\nAmount to transfer: " + transactionModel.getNominal()+", please send the specified amount to the following " + transactionModel.getOrigin().getType().getNama() + " account\n"+
+                        "Username: " + transactionModel.getBroker().getUsername() + "\n" +
+                        "Phone Number: " +transactionModel.getBroker().getPhoneNumber());
         System.out.println("mail sent===============================");
         return "login";
     }

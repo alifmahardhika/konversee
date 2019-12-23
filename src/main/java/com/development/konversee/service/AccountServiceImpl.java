@@ -40,7 +40,7 @@ public class AccountServiceImpl implements  AccountService{
     }
 
     @Override
-    public AccountModel findByInfo(String username, BigInteger phoneNumber, AccountTypeModel type){
+    public AccountModel findByInfo(String username, String phoneNumber, AccountTypeModel type){
         List<AccountModel> allAccount = getAccountList();
         for (AccountModel account: allAccount){
             if (account.getUsername().equalsIgnoreCase(username)){
